@@ -28480,7 +28480,7 @@ type MultishiftGetController struct {
 	CaCertRotationStatus *CommonClusterCACertRotation `json:"caCertRotationStatus,omitempty"`
 
 	// CoreosEnabled Optional: Returns whether Red Hat CoreOS features are enabled within the Satellite location.
-	CoreosEnabled *bool `json:"coreos_enabled,omitempty"`
+	CoreosEnabled *bool `json:"coreosEnabled,omitempty"`
 
 	// COSBucket Optional: IBM Cloud Object Storage bucket configuration details.
 	CosConfig *COSBucket `json:"cos_config,omitempty"`
@@ -28579,6 +28579,10 @@ func UnmarshalMultishiftGetController(m map[string]json.RawMessage, result inter
 		return
 	}
 	err = core.UnmarshalModel(m, "caCertRotationStatus", &obj.CaCertRotationStatus, UnmarshalCommonClusterCACertRotation)
+	if err != nil {
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "coreosEnabled", &obj.CoreosEnabled)
 	if err != nil {
 		return
 	}
